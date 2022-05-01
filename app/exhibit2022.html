@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>DCON2022展示会場</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <script type="module" src="https://code4fukui.github.io/glb-viewer/mc-controls.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene" background="color: white" renderer="colorManagement: true">
+      <a-assets timeout="10000">
+        <a-asset-item id="base" src="../data/2022/dcon2022-exh.glb"></a-asset-item>
+      </a-assets>
+      <a-plane height="400" width="400" rotation="-90 0 0" color="#bbb"></a-plane>
+      
+      <!--
+      <a-entitiy x-position="0 0.05 -4">
+      </a-entity>
+
+      -->
+      <a-entity id="base" gltf-model="#base" position="0 0 0" rotation="0 42 0"></a-entity>
+  
+      <!--
+      <a-camera id="camera" position="0 1.7 0"></a-camera>
+    -->
+    <a-entity id="cameraRig">
+      <a-entity id="head" camera position="0 1.7 0" mc-controls x-wasd-controls-mode2 look-controls x-drone-controls-mode2 raycaster="objects: .collidable; far: 0.5;" collider-check></a-entity>
+      <a-entity oculus-touch-controls="hand:left" teleport-controls="button:trigger; collisionEntities:.collidable; cameraRig:#cameraRig; teleportOrigin:#head;"></a-entity>
+      <a-entity oculus-touch-controls="hand:right" teleport-controls="button:trigger; collisionEntities:.collidable; cameraRig:#cameraRig; teleportOrigin:#head;"></a-entity>
+    </a-entity>
+
+  </a-scene>
+
+<script type="module">
+const list = [ // todo: set into team.json
+  { name: "大島", x: -3.9190984096605823, y: 1.7, z: 5.839422805405727, ry: 90 },
+  { name: "こんどる？", x: -3.8328988187481476, y: 1.7, z: 3.2120345666077244, ry: 90 },
+  { name: "佐世保", x: -3.673976735808215, y: 1.7, z: -1.631956073972266, ry: 90 },
+  { name: "沖縄", x: -3.5946793186063704, y: 1.7, z: -4.048964079669455, ry: 90 },
+
+  { name: "一関", x: -1.073609746819871, y: 1.7, z: -6.733853551600729, ry: 0 },
+  { name: "沼津", x: 1.6324366871655178, y: 1.7, z: -6.509721657221165, ry: 0 },
+
+  { name: "豊田", x: 3.9659051827057947, y: 1.7, z: -3.754422363752149, ry: -90 },
+  { name: "鳥羽", x: 3.806778253741621, y: 1.7, z: -0.9689369038239857, ry: -90 },
+  { name: "明石", x: 3.5785401746968453, y: 1.7, z: 3.0166301145489265, ry: -90 },
+  { name: "Tutelary", x: 3.424659339161343, y: 1.7, z: 5.703746942015886, ry: -90 },
+];
+
+const imgs = await (await fetch("../data/2022/img.json")).json();
+for (const d of list) {
+  const imgs2 = imgs.filter(i => i.tags?.indexOf(d.name) >= 0);
+  for (let i = 0; i < Math.min(3, imgs2.length); i++) {
+    const img = imgs2[i];
+    const p = document.createElement("a-plane");
+    p.setAttribute("position", { x: d.x, y: d.y - i * .5, z: d.z });
+    p.setAttribute("width", .8);
+    p.setAttribute("height", .45);
+    p.setAttribute("src", img.url);
+    p.setAttribute("rotation", { x: 0, y: d.ry, z: 0 });
+    scene.appendChild(p);
+  }
+}
+
+// for test
+document.body.onkeydown = (e) => {
+  if (e.key == "Enter") {
+    console.log(camera.getAttribute("position"));
+  }
+};
+</script>
+</body>
+</html>
