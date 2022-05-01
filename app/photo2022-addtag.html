@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>DCON2022 写真タイル</title>
+<body>
+
+<div id=main></div>
+<textarea id=ta></textarea>
+
+<script type="module">
+import { shuffle } from "https://js.sabae.cc/shuffle.js";
+
+const imgs = await (await fetch("../data/2022/img.json")).json();
+shuffle(imgs);
+for (const img of imgs) {
+  const imgc = new Image();
+  imgc.src = img.url;
+  main.appendChild(imgc);
+  imgc.onclick = () => {
+    //imgc.requestFullscreen();
+    const s = prompt("tag?", img.tags)
+    if (s) {
+      img.tags = s;
+      show();
+    }
+  };
+  const show = () => {
+    ta.value = JSON.stringify(imgs, null, 2);
+  };
+}
+</script>
+
+<style>
+body {
+  margin: 0;
+}
+#main {
+  line-height: 0;
+}
+img {
+  width: 25vw;
+  height: 20vw;
+  x-object-fit: contain;
+  object-fit: cover;
+}
+footer {
+  padding: 1em;
+}
+</style>
+
+<footer>
+APP: DCON2022 写真タイル <a href=https://fukuno.jig.jp/3565>@taisukef</a> by MIT License (<a href=https://github.com/codeforkosen/dcon-opendata>src on GitHub</a>)<br>
+DATA: CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a> (写真追加は<a href=https://github.com/codeforkosen/dcon-opendata/tree/main/data/2022/img>こちら</a>へ追加プルリクください)<br>
+</footer>
+
+</body>
+</html>
