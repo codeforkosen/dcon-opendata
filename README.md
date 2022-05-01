@@ -1,5 +1,9 @@
 # 高専DCONオープンデータ
 
+## sample
+
+- [結果2022](https://codeforkosen.github.io/dcon-opendata/app/result2022.html)
+- [写真2022](https://codeforkosen.github.io/dcon-opendata/app/photo2022.html)
 
 ## tool
 
