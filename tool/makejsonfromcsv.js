@@ -1,4 +1,5 @@
 import { CSV } from "https://js.sabae.cc/CSV.js";
 
-const data = CSV.toJSON(await CSV.fetch("../data/2022/team.csv"));
-await Deno.writeTextFile("../data/2022/team.json", JSON.stringify(data, null, 2));
+const year = 2023;
+const data = CSV.toJSON(await CSV.fetch(`../data/${year}/team.csv`));
+await Deno.writeTextFile(`../data/${year}/team.json`, JSON.stringify(data, null, 2));
