@@ -8,20 +8,18 @@
 <script type="module">
 const teams = await (await fetch("../data/2023/team.json")).json();
 teams.sort((a, b) => parseInt(a.順位) - parseInt(b.順位));
-let n = 1;
 for (const t of teams) {
   const div = document.createElement("div");
   console.log(t);
   const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
   div.innerHTML = `
-    <h2>${n}位 ${t.作品名}</h2>
+    <h2>${t.順位}位 ${t.作品名}</h2>
     <div class=team>by ${t.チーム名} (${t.高専}) メンター <a href=${t.メンターURL}>${t.メンター} (${t.メンター所属})</a></div>
     <a href=${t.URL}><img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a><a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>
     <div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>
     <div class=result>企業評価額 ${t["企業評価額(億円)"]}億円 ${prize}</div>
   `;
   main.appendChild(div);
-  n++;
 }
 </script>
 
