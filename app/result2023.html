@@ -2,8 +2,10 @@
 <title>DCON2023 結果</title>
 <body>
 
+<header>
 <h1>DCON2023結果</h1>
-<div id=main></div>
+</header>
+<main id=main></main>
 
 <script type="module">
 import { CSV } from "https://js.sabae.cc/CSV.js";
@@ -39,11 +41,24 @@ body {
   text-align: center;
   margin: 0;
 }
+header {
+  position: fixed;
+  display: block;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+}
 h1 {
+  display: block;
   margin: 0;
   padding: .3em;
   background-color: #34049a;
   color: white;
+}
+main {
+  margin-top: 6em;
 }
 .video_play {
   display: inline-block;
