@@ -2,13 +2,7 @@ import { DOMParser } from "https://js.sabae.cc/DOMParser.js";
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { fetchOrLoad } from "https://js.sabae.cc/fetchOrLoad.js";
 
-const year = Deno.args[0];
-if (!year) {
-  console.log("scrapeContent.js [year]");
-  Deno.exit();
-}
-//const result = []; // await CSV.fetchJSON("../data/" + year + "/result.csv", []);
-const result = await CSV.fetchJSON("../data/" + year + "/result.csv");
+const result = await CSV.fetchJSON("../data/2024/result.csv");
 
 const data = [];
 
@@ -19,7 +13,7 @@ const teamlink = dom.querySelectorAll(".final h4 a");
 let idx = 0;
 for (const a of teamlink) {
   const teamurl = url + a.getAttribute("href").substring(1);
-  const ID = "DCON" + year + "_" + ++idx;
+  const ID = "DCON2024_" + ++idx;
   data.push({ ID, URL: teamurl });
 }
 
@@ -45,18 +39,9 @@ for (const team of data) {
     if (name == "メンター") {
       const st = p.querySelector("strong");
       const val1 = st.childNodes[0].text;
-      /*
       const val2 = st.text.substring(val1.length).trim();
       team["メンター"] = val1;
       team["メンター所属"] = val2;
-      */
-      const n = val1.indexOf("（");
-      if (n < 0) {
-        team["メンター"] = val1.substring(val1.length - 1);
-      } else {
-        team["メンター"] = val1.substring(0, n - 1);
-        team["メンター所属"] = val1.substring(n + 2, val1.length - 1);
-      }
     } else {
       const val = p.text.substring(name.length).trim();
       team[rename(name)] = val;
@@ -73,6 +58,5 @@ for (const team of data) {
   }
 }
 console.log(data);
-await Deno.mkdir("../data/" + year, { recursive: true });
-const fn = "../data/" + year + "/team.csv";
+const fn = "../data/2024/team.csv";
 await Deno.writeTextFile(fn, CSV.stringify(data));
