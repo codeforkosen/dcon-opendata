@@ -55,7 +55,7 @@ for (const team of data) {
         team["メンター"] = val1.substring(val1.length - 1);
       } else {
         team["メンター"] = val1.substring(0, n - 1);
-        team["メンター所属"] = val1.substring(n + 2, val1.length - 1);
+        team["メンター所属"] = val1.substring(n + 1, val1.length - 1);
       }
     } else {
       const val = p.text.substring(name.length).trim();
