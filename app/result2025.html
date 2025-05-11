@@ -29,9 +29,7 @@ for (const t of teams) {
     <div class=team>by ${t.チーム名} (${t.高専}) メンター ${mentor}</div>
     <a href=${t.URL}><img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>
       <!--<a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>-->
-    <!--
       <div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>
-    -->
     <div class=result>${t["企業評価額(億円)"] != "" ? `企業評価額 ${t["企業評価額(億円)"]}億円` : ""} ${prize}</div>
   `;
   main.appendChild(div);
