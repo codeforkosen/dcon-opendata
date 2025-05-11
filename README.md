@@ -18,6 +18,13 @@ cd tool
 deno -A scrapeContent.js 2025
 ```
 
+YouTubeのプレゼン再生リンクをつくる → [team_youtube.csv](data/2025/team_youtube.csv)
+
+YouTubeのプレゼンURLを追加する
+```sh
+deno -A addYouTubeLink.js 2025
+```
+
 登録分のteam.csvデータをまとめる
 ```sh
 cd tool
