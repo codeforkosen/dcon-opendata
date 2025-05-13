@@ -12,7 +12,7 @@
 - [高専DCON2023 結果](https://codeforkosen.github.io/dcon-opendata/app/result2023.html)
 - [高専DCON2022 結果](https://codeforkosen.github.io/dcon-opendata/app/result2022.html) [写真](https://codeforkosen.github.io/dcon-opendata/app/photo2022.html)
 - [高専DCON2021 結果](https://codeforkosen.github.io/dcon-opendata/app/result2021.html) [web](https://dcon.ai/2021/) [YouTube](https://www.youtube.com/watch?v=kEDbfRuNZlY)
-- 高専DCON2020 [web](https://dcon.ai/2020/)
+- [高専DCON2020 結果](https://codeforkosen.github.io/dcon-opendata/app/result2020.html) [web](https://dcon.ai/2020/)
 
 ## tool
 

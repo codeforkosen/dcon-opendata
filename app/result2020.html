@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>DCON2020結果</title>
+<body>
+
+<header>
+<h1>DCON2020結果</h1>
+</header>
+<main id=main></main>
+
+<script type="module">
+import { CSV } from "https://js.sabae.cc/CSV.js";
+
+const teams = await CSV.fetchJSON("../data/2020/team.csv");
+
+teams.sort((a, b) => {
+  if (a.順位 == "" && b.順位 == "") return 0;
+  if (a.順位 == "" && b.順位 != "") return 1;
+  if (a.順位 != "" && b.順位 == "") return -1;
+  return parseInt(a.順位) - parseInt(b.順位);
+});
+for (const t of teams) {
+  const div = document.createElement("div");
+  console.log(t);
+  const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
+  const mentor0 = `${t.メンター} (${t.メンター所属})`;
+  const mentor = !t.メンター ? "" : (t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : mentor0);
+  div.innerHTML = `
+    <h2>${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
+    <a href=${t.URL}>
+    <div class=team>by ${t.チーム名} (${t.高専}) ${mentor}</div>
+    </a>
+      <!--<img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>-->
+      <!--<a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>-->
+      <!--<div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>-->
+    <div class=result>${t["企業評価額(億円)"] != "" ? `企業評価額 ${t["企業評価額(億円)"]}億円` : ""} ${prize}</div>
+  `;
+  main.appendChild(div);
+}
+</script>
+
+<style>
+body {
+  text-align: center;
+  margin: 0;
+}
+header {
+  position: fixed;
+  display: block;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  z-index: 100;
+}
+h1 {
+  display: block;
+  margin: 0;
+  padding: .3em;
+  background-color: #34049a;
+  color: white;
+}
+main {
+  margin-top: 6em;
+}
+.video_play {
+  display: inline-block;
+  position: relative;
+  width: 1em;
+  height: 1em;
+  border: 0.05em solid currentColor;
+  border-radius: 50%;
+  color: #f00;
+  font-size: 25px;
+}
+.video_play::before {
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translateY(-50%);
+  width: 0px;
+  height: 0px;
+  border: 0.3em solid transparent;
+  border-left: 0.5em solid currentColor;
+  box-sizing: border-box;
+  content: "";
+}
+.play {
+  margin-left: .5em;
+  vertical-align: .5em;
+  display: inline-block;
+}
+.keyword {
+  font-weight: bold;
+  padding: .2em;
+}
+.pr {
+  padding: .5em;
+  font-size: 90%;
+  background-color: #f8f8f8;
+  margin: .5em;
+  text-align: left;
+  white-space: pre-wrap;
+}
+img {
+  width: 30vw;
+  height: 18vw;
+  x-object-fit: contain;
+  object-fit: cover;
+}
+#main a {
+  color: #333 !important;
+}
+footer {
+  margin-top: 1em;
+  padding: 1em;
+  background-color: #34049a;
+  color: white;
+}
+footer a {
+  color: white !important;
+}
+</style>
+
+<footer>
+DATA: <a href=https://github.com/codeforkosen/dcon-opendata/blob/main/data/2021/team.json>DCON2021 CSVオープンデータ</a> CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a> (<a href=https://dcon.ai/2021/>DCON2021</a>より抽出)<br>
+APP: DCON2021 結果 <a href=https://fukuno.jig.jp/3930>@taisukef</a> by MIT License (<a href=https://github.com/codeforkosen/dcon-opendata>src on GitHub</a>)<br>
+</footer>
+
+</body>
+</html>
