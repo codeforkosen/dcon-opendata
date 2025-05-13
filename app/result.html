@@ -26,14 +26,15 @@ for (const t of teams) {
   const div = document.createElement("div");
   console.log(t);
   const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
-  const mentor0 = `${t.メンター} (${t.メンター所属})`;
-  const mentor = t.メンターURL ? `<a href=${t.メンターURL}>${mentor0}</a>` : mentor0;
+  const mentor0 = t.メンター ? `${t.メンター} (${t.メンター所属})` : "";
+  const mentor = t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : mentor0;
+  const movie = t.プレゼンURL ? `<div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>` : "";
   div.innerHTML = `
     <h2>DCON${t.year}年 ${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
-    <div class=team>by ${t.チーム名} (${t.高専}) メンター ${mentor}</div>
+    <div class=team>by ${t.チーム名} (${t.高専}) ${mentor}</div>
     <a href=${t.URL}><img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>
       <!--<a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>-->
-      <div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>
+      ${movie}
     <div class=result>${t["企業評価額(億円)"] != "" ? `企業評価額 ${t["企業評価額(億円)"]}億円` : ""} ${prize}</div>
   `;
   main.appendChild(div);
