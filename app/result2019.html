@@ -1,39 +1,37 @@
 <!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<title>DCON結果 (2019-2025)</title>
+<title>DCON2019結果</title>
 <body>
 
 <header>
-<h1>DCON結果 (2019-2025)</h1>
+<h1>DCON2019結果</h1>
 </header>
 <main id=main></main>
 
 <script type="module">
 import { CSV } from "https://js.sabae.cc/CSV.js";
 
-const teams0 = await CSV.fetchJSON("../data/team.csv");
-const sortname = "企業評価額(億円)";
-//const teams = teams0.filter(i => i["投資額(億円)"] == "" && i[sortname] != "");
-const teams = teams0.filter(i => i[sortname] != "");
+const teams = await CSV.fetchJSON("../data/2019/team.csv");
 
 teams.sort((a, b) => {
-  const m = parseInt(b[sortname]) - parseInt(a[sortname]);
-  if (m != 0) {
-    return m;
-  }
-  return parseInt(b.year) - parseInt(a.year);
+  if (a.順位 == "" && b.順位 == "") return 0;
+  if (a.順位 == "" && b.順位 != "") return 1;
+  if (a.順位 != "" && b.順位 == "") return -1;
+  return parseInt(a.順位) - parseInt(b.順位);
 });
 for (const t of teams) {
   const div = document.createElement("div");
   console.log(t);
   const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
   const mentor0 = `${t.メンター} (${t.メンター所属})`;
-  const mentor = t.メンターURL ? `<a href=${t.メンターURL}>${mentor0}</a>` : mentor0;
+  const mentor = !t.メンター ? "" : (t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : mentor0);
   div.innerHTML = `
-    <h2>DCON${t.year}年 ${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
-    <div class=team>by ${t.チーム名} (${t.高専}) メンター ${mentor}</div>
-    <a href=${t.URL}><img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>
+    <h2>${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
+    <a href=${t.URL}>
+    <div class=team>by ${t.チーム名} (${t.高専}) ${mentor}</div>
+    </a>
+      <!--<img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>-->
       <!--<a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>-->
-      <div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>
+      <!--<div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>-->
     <div class=result>${t["企業評価額(億円)"] != "" ? `企業評価額 ${t["企業評価額(億円)"]}億円` : ""} ${prize}</div>
   `;
   main.appendChild(div);
@@ -124,7 +122,7 @@ footer a {
 </style>
 
 <footer>
-DATA: <a href=https://github.com/codeforkosen/dcon-opendata/blob/main/data/2025/team.json>DCON2025 CSVオープンデータ</a> CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a> (<a href=https://dcon.ai/2025/>DCON2025</a>より抽出)<br>
+DATA: CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a><br>
 APP: <a href=https://fukuno.jig.jp/3930>@taisukef</a> by MIT License (<a href=https://github.com/codeforkosen/dcon-opendata>src on GitHub</a>)<br>
 </footer>
 
