@@ -11,6 +11,8 @@
 - [高専DCON2024 結果](https://codeforkosen.github.io/dcon-opendata/app/result2024.html) [空間写真](https://code4fukui.github.io/fisheyes-viewer/slideshow.html?url=https://tf0.code4fukui.org/vr180/2024-05-11-dcon2024/dcon2024.m3u8)
 - [高専DCON2023 結果](https://codeforkosen.github.io/dcon-opendata/app/result2023.html)
 - [高専DCON2022 結果](https://codeforkosen.github.io/dcon-opendata/app/result2022.html) [写真](https://codeforkosen.github.io/dcon-opendata/app/photo2022.html)
+- [高専DCON2021 結果](https://codeforkosen.github.io/dcon-opendata/app/result2021.html) [web](https://dcon.ai/2021/) [YouTube](https://www.youtube.com/watch?v=kEDbfRuNZlY)
+- 高専DCON2020 [web](https://dcon.ai/2020/)
 
 ## tool
 
