@@ -23,10 +23,10 @@ for (const t of teams) {
   console.log(t);
   const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
   const mentor0 = `${t.メンター} (${t.メンター所属})`;
-  const mentor = t.メンターURL ? `<a href=${t.メンターURL}>${mentor0}</a>` : mentor0;
+  const mentor = !t.メンター ? "" : (t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : mentor0);
   div.innerHTML = `
     <h2>${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
-    <div class=team>by ${t.チーム名} (${t.高専}) メンター ${mentor}</div>
+    <div class=team>by ${t.チーム名} (${t.高専}) ${mentor}</div>
     <a href=${t.URL}><img src=${t.作品画像URL}><img src=${t.チーム画像URL}></a>
       <!--<a href=${t.メンターURL}><img src=${t.メンター画像URL}></a>-->
       <div><a href=${t.プレゼンURL} target=dconpresen><span class=video_play></a></span><a class=play href=${t.プレゼンURL} target=dconpresen>プレゼン動画を見る</a></div>
@@ -120,8 +120,8 @@ footer a {
 </style>
 
 <footer>
-DATA: <a href=https://github.com/codeforkosen/dcon-opendata/blob/main/data/2025/team.json>DCON2025 CSVオープンデータ</a> CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a> (<a href=https://dcon.ai/2025/>DCON2025</a>より抽出)<br>
-APP: DCON2025 結果 <a href=https://fukuno.jig.jp/3930>@taisukef</a> by MIT License (<a href=https://github.com/codeforkosen/dcon-opendata>src on GitHub</a>)<br>
+DATA: <a href=https://github.com/codeforkosen/dcon-opendata/blob/main/data/2021/team.json>DCON2021 CSVオープンデータ</a> CC BY <a href=https://github.com/codeforkosen/dcon-opendata>Code for KOSEN, DCONオープンデータ</a> (<a href=https://dcon.ai/2021/>DCON2021</a>より抽出)<br>
+APP: DCON2021 結果 <a href=https://fukuno.jig.jp/3930>@taisukef</a> by MIT License (<a href=https://github.com/codeforkosen/dcon-opendata>src on GitHub</a>)<br>
 </footer>
 
 </body>
