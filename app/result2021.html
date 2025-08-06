@@ -23,7 +23,7 @@ for (const t of teams) {
   console.log(t);
   const prize = t.受賞 ? `（<span class=prize>${t.受賞}</span>）` : "";
   const mentor0 = `${t.メンター} (${t.メンター所属})`;
-  const mentor = !t.メンター ? "" : (t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : mentor0);
+  const mentor = !t.メンター ? "" : (t.メンターURL ? `メンター <a href=${t.メンターURL}>${mentor0}</a>` : "メンター " + mentor0);
   div.innerHTML = `
     <h2>${t.順位 != "" ? t.順位 + "位 " : ""}${t.作品名}</h2>
     <div class=team>by ${t.チーム名} (${t.高専}) ${mentor}</div>
