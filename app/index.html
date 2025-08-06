@@ -43,7 +43,8 @@ const show = () => {
     a.appendChild(img);
     const div2 = document.createElement("div");
     a.appendChild(div2);
-    div2.innerHTML = `<div>${team.作品名}(${team.ID}) / ${team.高専}</div>`;
+    const presen = team.プレゼンURL ? ` (<a href=${team.プレゼンURL} target=_blank>動画</a>)` : "";
+    div2.innerHTML = `<div>${team.作品名}(${team.ID}) / ${team.高専}${presen}</div>`;
     a.setAttribute("href", team.URL);
     main.appendChild(a);
   }
