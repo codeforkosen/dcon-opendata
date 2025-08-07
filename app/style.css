@@ -1,0 +1,31 @@
+body {
+  margin: 0;
+}
+#main {
+}
+#main > a {
+  display: inline-block;
+  width: 24vw;
+  margin: .5vw;
+  vertical-align: top;
+  text-decoration: none;
+  line-height: 1.3;
+  word-break: break-all;
+}
+#main > a > img {
+  width: 100%;
+  height: 15vh;
+  object-fit: cover;
+  margin-bottom: .8em;
+}
+header {
+  padding: 1em;
+}
+footer {
+  padding: 1em;
+}
+#infilter {
+  font-size: 16px;
+  margin: 0.8em 0;
+  min-width: 15em;
+}
