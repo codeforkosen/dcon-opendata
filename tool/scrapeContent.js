@@ -8,7 +8,7 @@ if (!year) {
   Deno.exit();
 }
 //const result = []; // await CSV.fetchJSON("../data/" + year + "/result.csv", []);
-const result = await CSV.fetchJSON("../data/" + year + "/result.csv");
+const result = await CSV.fetchJSON("../data/" + year + "/result.csv", []);
 
 const data = [];
 

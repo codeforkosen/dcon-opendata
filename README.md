@@ -20,7 +20,8 @@
 スクレイピングして、その年の team.csv を作成
 ```sh
 cd tool
-deno -A scrapeContent.js 2025
+rm -rf temp
+deno -A scrapeContent.js 2026
 ```
 
 YouTubeのプレゼン再生リンクをつくる → [team_youtube.csv](data/2025/team_youtube.csv)

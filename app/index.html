@@ -14,7 +14,16 @@ import { CSV } from "https://code4fukui.github.io/CSV/CSV.js";
 import { shuffle } from "https://js.sabae.cc/shuffle.js";
 
 const teams = await CSV.fetchJSON("../data/team.csv");
-shuffle(teams);
+//console.log(teams.map(i => i.ID));
+const tosort = id => {
+  const ss = id.split("_");
+  const year = parseInt(ss[0].substring(4));
+  const num = parseInt(ss[1]);
+  return year * 100 - num;
+};
+teams.sort((a, b) => tosort(b.ID) - tosort(a.ID));
+//teams.reverse();
+//shuffle(teams);
 
 const isMatch = (obj, key) => {
   key = key.toLowerCase();
