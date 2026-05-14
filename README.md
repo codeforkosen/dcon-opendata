@@ -2,11 +2,12 @@
 
 ## 作品検索
 
-- [DCON作品検索(2019-2025)](https://codeforkosen.github.io/dcon-opendata/app/)
+- [DCON作品検索(2019-2026)](https://codeforkosen.github.io/dcon-opendata/app/)
 - [DCON結果(2019-2025)](https://codeforkosen.github.io/dcon-opendata/app/result.html)
 
 ## オープンデータ＆写真
 
+- [高専DCON2026](data/2026/team.csv)
 - [高専DCON2025 結果](https://codeforkosen.github.io/dcon-opendata/app/result2025.html) [空間写真(厳選)](https://code4fukui.github.io/fisheyes-viewer/slideshow.html?url=https://img.fukuno.com/vr180/20250510_dcon2025/people.m3u8) [空間写真](https://code4fukui.github.io/fisheyes-viewer/slideshow.html?url=https://img.fukuno.com/vr180/20250510_dcon2025/out.m3u8)
 - [高専DCON2024 結果](https://codeforkosen.github.io/dcon-opendata/app/result2024.html) [空間写真](https://code4fukui.github.io/fisheyes-viewer/slideshow.html?url=https://tf0.code4fukui.org/vr180/2024-05-11-dcon2024/dcon2024.m3u8)
 - [高専DCON2023 結果](https://codeforkosen.github.io/dcon-opendata/app/result2023.html)
