@@ -28,25 +28,25 @@ YouTubeのプレゼン再生リンクをつくる → [team_youtube.csv](data/20
 
 YouTubeのプレゼンURLを追加する
 ```sh
-deno -A addYouTubeLink.js 2025
+deno -A addYouTubeLink.js "https://www.youtube.com/watch?v=5LCJDsg9ejw" 2026
 ```
 
 登録分のteam.csvデータをまとめる
 ```sh
 cd tool
-deno run -A makeAll.js
+deno -A makeAll.js
 ```
 
 ## old tool
 
-makejsonfromcsv.js 内の year を設定し、下記コマンドで team.json を team.csv から生成する
+team.json を team.csv から生成する
 ```sh
 cd tool
-deno run -A makejsonfromcsv.js
+deno -A makejsonfromcsv.js 2026
 ```
 
 img.json, img,csv を画像ディレクトリから作成する
 ```sh
 cd tool
-deno run -A makeimgjson.js
+deno -A makeimgjson.js
 ```

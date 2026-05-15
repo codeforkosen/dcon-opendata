@@ -1,12 +1,13 @@
 import { CSV } from "https://js.sabae.cc/CSV.js";
 
-const year = Deno.args[0];
-if (!year) {
-  console.log("addYouTubeLink.js [year]");
+const baseurl = Deno.args[0];
+const year = Deno.args[1];
+if (!baseurl || !year) {
+  console.log("addYouTubeLink.js [baselink] [year]");
   Deno.exit();
 }
 
-const baseurl = "https://www.youtube.com/live/gbulH1etEHU";
+//const baseurl = "https://www.youtube.com/live/gbulH1etEHU";
 
 const data = await CSV.fetchJSON("../data/" + year + "/team.csv");
 const append = await CSV.fetchJSON("../data/" + year + "/team_youtube.csv");
@@ -21,7 +22,7 @@ let idx = 1;
 for (const team of data) {
   const res = append.find(i => i.ID == team.ID);
   const t = makeTime(res.TIME);
-  const url = `${baseurl}?t=${t}s`;
+  const url = `${baseurl}${baseurl.indexOf("?") >= 0 ? "&" : "?"}t=${t}s`;
   res["プレゼン順"] = idx++;
   res["プレゼンURL"] = url;
   if (res) {
