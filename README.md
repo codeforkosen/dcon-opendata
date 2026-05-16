@@ -29,7 +29,7 @@ YouTubeのプレゼン再生リンクをつくる → [team_youtube.csv](data/20
 
 YouTubeのプレゼンURLを追加する
 ```sh
-deno -A addYouTubeLink.js "https://www.youtube.com/watch?v=5LCJDsg9ejw" 2026
+deno -A addYouTubeLink.js 2026 "https://www.youtube.com/watch?v=5LCJDsg9ejw"
 ```
 
 登録分のteam.csvデータをまとめる
